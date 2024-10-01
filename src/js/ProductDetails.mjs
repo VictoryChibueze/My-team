@@ -1,8 +1,8 @@
 import { setLocalStorage } from "./utils.mjs";
 import { getLocalStorage } from "./utils.mjs";
-
+import Swal from "sweetalert2";
 function productDetailsTemplate(product) {
-    return `<section class="product-detail">
+  return `<section class="product-detail">
     <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
          <img
@@ -19,45 +19,54 @@ function productDetailsTemplate(product) {
         </p>
 
         <div class="product-detail__add">
-          <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+          <button id="addToCart" data-id="${product.Id}" >Add to Cart</button>
         </div>
         </section>`;
 }
 
 export default class ProductDetails {
-    constructor(productId, dataSource){
-        this.productId = productId;
-        this.product = {};
-        this.dataSource = dataSource;
-      }    
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+  }
 
-      async init() {
-        // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-        this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails("main");
-        // once we have the product details we can render out the HTML
-        // once the HTML is rendered we can add a listener to Add to Cart button
-        // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-        document
-          .getElementById("addToCart")
-          .addEventListener("click", this.addProductToCart.bind(this));
-      }
-      
-      addProductToCart() {
-        const existingCart = getLocalStorage("addToCart") || []; // Retrieve existing items
-        existingCart.push(this.product); // Append the new product
-        setLocalStorage("addToCart", existingCart); // Save back to local storage
+  async init() {
+    // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+    this.product = await this.dataSource.findProductById(this.productId);
+    this.renderProductDetails("main");
+    // once we have the product details we can render out the HTML
+    // once the HTML is rendered we can add a listener to Add to Cart button
+    // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.addProductToCart.bind(this));
 
-    }
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.notifyProductAddition.bind(this));
+  }
 
-      renderProductDetails(selector) {
+  addProductToCart() {
+    const existingCart = getLocalStorage("addToCart") || []; // Retrieve existing items
+    existingCart.push(this.product); // Append the new product
+    setLocalStorage("addToCart", existingCart); // Save back to local storage
+  }
 
-        const element = document.querySelector(selector);
-        element.insertAdjacentHTML(
-          "afterBegin",
-          productDetailsTemplate(this.product)
-    
-        );
-    
-      }
+  renderProductDetails(selector) {
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML(
+      "afterBegin",
+      productDetailsTemplate(this.product),
+    );
+  }
+  notifyProductAddition() {
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "Product has been added to cart",
+      showConfirmButton: true,
+      timer: 2000,
+    });
+  }
 }

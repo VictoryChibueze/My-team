@@ -209,7 +209,15 @@ button {
 .total-hide {
   display: none;
 }
-
+.cart-superscript {
+  background-color: rgb(218, 113, 113);
+  position: absolute;
+  border-radius: 4rem;
+  padding: 0.2rem;
+  font-size: 0.6rem;
+  left: 1rem;
+  top: 0.5rem;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
