@@ -6,6 +6,16 @@
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="js/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      .swal2-popup-class {
+    font-size: 1.2em; /* Adjust font size */
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Text color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+    </style>
   </head>
   <body>
     <header class="divider">
@@ -39,7 +49,6 @@
             <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
           </svg>
         </a>
-        <!-- <span class="cart-superscript">44</span> -->
       </div>
     </header>
     <main class="divider">
@@ -63,11 +72,69 @@
           comfortably at an affordable price.
         </p>
       </section>
-      <section class="products">
-        <h2>Top Products</h2>
+      <!-- <section class="products">
+        <h2>CATEGORIES</h2>
         <ul class="product-list"></ul>
+      </section> -->
+      <section class="products">
+        <ul class="product-grid">
+          <li>
+            <a href="/product-listing/index.html?category=tents"
+              ><img
+                src="images/tentSvg.svg"
+                alt="Tent Icon from Noun Project: Mustofa Bayu"
+              />
+              <h2>Tents</h2>
+            </a>
+          </li>
+          <li>
+            <a href="/product-listing/index.html?category=backpacks"
+              ><img
+                src="images/bagSvg.svg"
+                alt="Backpack Icon from Noun Project: Mustofa Bayu"
+              />
+              <h2>Backpacks</h2>
+            </a>
+          </li>
+          <li>
+            <a href="/product-listing/index.html?category=sleeping-bags"
+              ><img
+                src="images/sleepSvg.svg"
+                alt="Sleeping Bag Icon from Noun Project: Mustofa Bayu"
+              />
+              <h2>Sleeping Bags</h2>
+            </a>
+          </li>
+          <li>
+            <a href="/product-listing/index.html?category=hammocks"
+              ><img
+                src="images/hamockSvg.svg"
+                alt="Hammock Icon from Noun Project: Paul Richard"
+              />
+              <h2>Hammocks</h2>
+            </a>
+          </li>
+        </ul>
       </section>
     </main>
     <footer>&copy;NOT a real business</footer>
+    <script>
+      function showWelcomeAlert() {
+    Swal.fire({
+        title: 'Welcome to the site!',
+        text: 'You can start carting',
+        icon: 'success',
+        showConfirmButton: false, 
+        timer: 3000, 
+        timerProgressBar: true, 
+        customClass: {
+            popup: 'swal2-popup-class' 
+        }
+    });
+}
+
+
+window.onload = showWelcomeAlert;
+    </script>
   </body>
 </html>

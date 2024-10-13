@@ -1,12 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-export default function cartLength() {
-  const cartItem = getLocalStorage("addToCart") || [];
-  return (document.querySelector(".cart-superscript").innerHTML =
-    cartItem.length);
-}
-cartLength();
-
 function renderCartContents() {
   const productList = document.querySelector(".product-list");
   const cartItems = getLocalStorage("addToCart") || [];
@@ -62,7 +55,6 @@ function attachEventListeners() {
 
   productList.addEventListener("click", function (event) {
     const removeBtn = event.target.closest(".cart-card__remove");
-
     if (removeBtn) {
       const id = removeBtn.getAttribute("data-id");
       removeItemFromCart(id);
@@ -81,9 +73,6 @@ function removeItemFromCart(id) {
   setLocalStorage("addToCart", cart);
   renderCartContents();
 }
-// document
-//   .querySelector(".cart-card__remove")
-//   .addEventListener("click", notifyProductRemoval);
 
 function handleCheckout() {
   // console.log("Proceeding to checkout...");

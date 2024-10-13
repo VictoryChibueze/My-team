@@ -14,8 +14,11 @@
     "no-unused-vars": [
       1,
       {
-        "argsIgnorePattern": "res|next|^err",
-        "@typescript-eslint/no-namespace": "off"
+        "argsIgnorePattern": "res|next|^err"
+<<<<<<< HEAD
+=======
+        // "@typescript-eslint/no-namespace": "off"
+>>>>>>> dc5b7eefa8be1ea26a4a8b918af22645e14464c6
       }
     ],
     "arrow-body-style": [2, "as-needed"],
