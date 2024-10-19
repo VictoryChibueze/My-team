@@ -21,9 +21,8 @@
 //     .getElementById("addToCart")
 //     .addEventListener("click", addToCartHandler);
 
-
 import { getParam, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ProductData from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
 loadHeaderFooter();
