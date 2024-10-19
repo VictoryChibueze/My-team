@@ -88,10 +88,10 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
+
     try {
       const res = await services.checkout(json);
-      console.log(res);
+
       setLocalStorage("so-cart", []);
       location.assign("/checkout/success.html");
     } catch (err) {

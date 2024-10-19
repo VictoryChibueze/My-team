@@ -1,7 +1,3 @@
-// import { loadHeaderFooter } from "./utils.mjs";
-
-// loadHeaderFooter();
-
 import { loadHeaderFooter } from "./utils.mjs";
 import CheckoutProcess from "./checkoutProcess.mjs";
 
